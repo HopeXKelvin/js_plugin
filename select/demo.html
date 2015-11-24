@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Select</title>
+	<style>
+	body{
+		background-color: #aaa;
+	}
+	.wrapper{
+		font-family: "微软雅黑";
+		width: 200px;
+		margin: 200px auto;
+		background-color: #aaa;
+	}
+	.select-box h1{
+		font-size: 14px;
+		text-align: center;
+	}
+	.select-area{
+		background-color: #aaa;
+		padding: 5px;
+		position: relative;
+	}
+	.display-line{
+		font-size: 14px;
+		text-align: center;
+		background-color: #fff;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+	.display-line:after{
+		content: "";
+		width: 0;
+		height: 0;
+		border-left: 5px solid transparent;
+		border-right: 5px solid transparent;
+		border-top: 10px solid black;
+		position: absolute;
+		right: 10px;
+		bottom: 10px;
+	}
+	.select-ul{
+		list-style: none;
+		padding: 0;
+		margin: 2px 0;
+		background-color: #fff;
+		border-radius: 5px;
+		position: absolute;
+		width: 190px;
+		z-index: 999;
+	}
+	.select-ul li{
+		list-style: none;
+		text-align: center;
+		padding: 2px 4px;
+		border-radius: 5px;
+		margin: 2px 0;
+		cursor: pointer;
+	}
+	.select-ul li:hover{
+		background-color: #ddd;
+		color: #000;
+	}
+	.isHover:hover{
+	}
+	.invisible{
+		display: none;
+	}
+	.visible{
+		display: block;
+	}
+	.isSelected{
+		background-color: #add;
+	}
+	.isSelected:hover{
+		background-color: #add!important;
+		color: #000!important;
+	}
+	/*单选框和多选框的 功能按钮样式*/
+	.mulSelectOp{
+		cursor: default!important;
+		border-top: 1px dashed #000;
+		border-radius: 0!important;
+	}
+	.mulSelectOp span{
+		cursor: pointer;
+		font-size: 14px;
+		padding: 2px;
+		border-radius: 4px;
+		color: #000;
+		display: inline-block;
+		width: 50px;
+	}
+	.mulSelectOp span:hover{
+		color: #00f;
+	}
+	.searchBox{
+		border-top: 1px dashed #000;
+		cursor: default!important;
+	}
+	.searchBox span{
+		text-align: center;
+		display: inline-block;
+		padding: 5px;
+		cursor: pointer;
+		font-size: 12px;
+		line-height: 12px;
+	}
+	.searchBox span:hover{
+		background-color: #aa2;
+		color: #fff;
+	}
+	.searchBox input{
+		width: 100px;
+	}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<!-- 单选框 -->
+		<div class="select-box" id="a-select" data-type="single">
+			<h1>单选</h1>
+			<div class="select-area">
+				<div class="display-line">请选择</div>
+				<ul class="select-ul invisible">
+					<li>html选项1</li>
+					<li>html选项2</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- 多选框 -->
+		<div class="select-box" id="b-select" data-type="multiple">
+			<h1>多选</h1>
+			<div class="select-area">
+				<div class="display-line">请选择</div>
+				<ul class="select-ul invisible">
+					<li>html多选1</li>
+					<li>html多选2</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script src="../lib/jquery.js"></script>
+	<script src="../src/jquery._hhSelect.js"></script>
+	<script>
+	$(function(){
+		var aSelect=$("#a-select")._hhSelect({
+				"data-type":"single",
+				"data":["自定义1","自定义2","自定义3","自定义4","自定义5","自定义6","自定义7"]
+			});
+		var bSelect=$("#b-select")._hhSelect({
+			"data-type":"multiple",
+			"data":["多选自定义1","多选自定义2","多选自定义3","多选自定义4"]
+		});
+		aSelect.addItem("单选添加项1");
+		bSelect.addItem("多选添加项2");
+	})
+	</script>
+</body>
+</html>
