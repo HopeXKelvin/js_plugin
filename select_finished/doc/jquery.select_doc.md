@@ -20,14 +20,18 @@ query.hhSelect.js 是一个基于jQuery库的下拉框插件
 
 >使用方法
 
-**`$(".a-select").hhSelect({
+1.纯插件方法构造自定义下拉框
+
+```javascript
+$(".a-select").hhSelect({
   data:[{"key":"opt1","value":"选项1","isSelected":false},
           {"key":"opt2","value":"选项2","isSelected":false},
           {"key":"opt3","value":"选项3","isSelected":false},
           {"key":"opt4","value":"选项4","isSelected":false}],
   selectTitle:"单项选择",
   dataType:"single"
-});`**
+});
+```
 
 >组件属性列表
 
