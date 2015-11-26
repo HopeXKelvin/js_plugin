@@ -50,10 +50,10 @@
   <script>
     $(function(){
       var sinSelect=$(".a-select").hhSelect({
-        data:[{"key":"opt1","value":"选项1","isSelected":false},
-                {"key":"opt2","value":"选项2","isSelected":false},
-                {"key":"opt3","value":"选项3","isSelected":false},
-                {"key":"opt4","value":"选项4","isSelected":false}],
+        data:[{"key":"opt1","value":"选项1"},
+                {"key":"opt2","value":"选项2"},
+                {"key":"opt3","value":"选项3"},
+                {"key":"opt4","value":"选项4"}],
         selectTitle:"单项选择",
         dataType:"single"
       });
@@ -61,10 +61,10 @@
       sinSelect.addLiNode("添加项","外部添加项1");
       sinSelect.deleteLiNode("添加项");
       var mulSelect=$(".b-select").hhSelect({
-         data:[{"key":"mopt1","value":"111","isSelected":false},
-                {"key":"mopt2","value":"222","isSelected":false},
-                {"key":"mopt3","value":"333","isSelected":false},
-                {"key":"mopt4","value":"444","isSelected":false}],
+         data:[{"key":"mopt1","value":"111"},
+                {"key":"mopt2","value":"222"},
+                {"key":"mopt3","value":"333"},
+                {"key":"mopt4","value":"444"}],
         dataType:"multiple"
       });
       mulSelect.deleteLiNode("mopt4");
