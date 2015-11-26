@@ -31,16 +31,12 @@
 			// 调用getDom方法
 			if(oldSelectArea){
 				oldSelectArea.remove();//删除原有的结点
-				// console.log("有旧的list");
 				var oldList=this.reConstruct(oldSelectArea),
 					domEle=this.getDom(_datas,oldList);
 			}else{
-				// console.log("没有旧的list");
 				domEle=this.getDom(_datas);
 			}
-			// console.log(domEle.text());
 			$this.append(domEle);
-			// console.log(domEle);
 			var selectUl=$this.find("ul"),
 				display=$this.find(".select-display"),
 				selectArea=$this.find(".select-area");
@@ -65,7 +61,6 @@
 			// console.log("init done!");
 		},
 		getDom:function(datas){
-			// console.log(datas instanceof Array);
 			// dom元素拼接方法
 			var $wrapper=$("<div>").addClass("select-box"),
 				oldList=arguments[1]?arguments[1]:{},
@@ -104,7 +99,6 @@
 			// 遍历获取oldLis的key和value
 			oldLis.each(function(){
 				var _self=$(this);
-				// console.log(_self);
 				lisValue.push({"key":_self.attr("data-key"),"value":_self.text()});
 			});
 			return lisValue;
@@ -120,7 +114,6 @@
 			selectList.each(function(){
 				$(this)
 					.on("click",function(){
-						// console.log($(this).text());
 						selectUl.removeClass("visible").addClass("invisible");
 						display.text($(this).text());
 						$(this).siblings()
@@ -141,7 +134,6 @@
 			selectList.each(function(){
 				$(this)
 					.on("click",function(){
-						// console.log($(this).text());
 						if($(this).hasClass("isSelected")){
 						selectSum--;
 						$(this)
@@ -287,7 +279,6 @@
 			$lis.each(function(){
 				if($(this).data("key")==key){
 					// 删除节点
-					console.log("删除了:"+$(this).text());
 					$(this).remove();
 				}
 			});

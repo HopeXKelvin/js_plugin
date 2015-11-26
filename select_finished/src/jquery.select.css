@@ -25,6 +25,18 @@
   padding: 5px 10px;
   text-align: center;
   cursor: pointer;
+  position: relative;
+}
+.select-display:after{
+  content:"";
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 12px solid black;
+  position: absolute;
+  right: 5px;
+  bottom: 8px;
 }
 .select-list{
   list-style: none;
