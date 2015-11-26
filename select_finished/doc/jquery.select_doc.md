@@ -117,3 +117,9 @@ dataType |  string  |single/multiple|single表示单选,multiple表示多选
 selectTitle|string  | 字符串      |如果不设置，默认值会是"单选框"
 selectDis|string| 字符串          |这个是设置选择框的显示文字，默认值是"请选择"
 >##外部调用方法
+
+  方法名 | 方法参数  | 方法作用
+  -------|-----------|---------
+  getSelected()|无|获取当前被选中的选项，返回数据格式:{key:" ",value:" "}
+  addLiNode(key,value) |  key,value/string,string | 给现有的选择列表添加新的选项
+  deleteLiNode(key) | key/string  | 根据key值删除选择项
