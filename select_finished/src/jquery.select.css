@@ -1,0 +1,83 @@
+/*下拉选择框组件的样式*/
+.select-box{
+  width: 250px;
+  background-color: #fff;
+  font-family: "微软雅黑";
+}
+.select-title{
+  display: inline-block;
+  padding: 0 4px;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  font-size: 13px;
+}
+.select-area{
+  float: right;
+}
+.select-display{
+  font-size: 13px;
+  border: 1px solid #ddf;
+  background-color: #fff;
+  border-radius: 5px;
+  display: inline-block;
+  width: 148px;
+  padding: 5px 10px;
+  text-align: center;
+  cursor: pointer;
+}
+.select-list{
+  list-style: none;
+  background-color:#fff;
+  padding: 0;
+  margin: 5px 0;
+  border: 1px solid #aad;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 999;
+}
+.select-list li{
+  width: 148px;
+  font-size: 13px;
+  list-style: none;
+  text-align: center;
+  padding: 5px 10px;
+  margin: 2px 0;
+  cursor: pointer;
+}
+.select-list li:hover{
+  background-color: #ddd;
+}
+.select-btn{
+  text-align: center;
+  display: inline-block;
+  font-size: 13px;
+  width: 50px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+.select-btn:hover{
+  color: #fff;
+}
+.tool-box{
+  background-color: #aaa;
+  cursor: auto!important;
+  margin-bottom: 0!important;
+}
+.tool-box:hover{
+  background-color: #aaa!important;
+}
+.isSelected{
+  background-color: #aad;
+  color: #eee;
+}
+.isSelected:hover{
+  background-color: #aad!important;
+  color: #eee!important;
+}
+.visible{
+  display: block;
+}
+.invisible{
+  display: none;
+}

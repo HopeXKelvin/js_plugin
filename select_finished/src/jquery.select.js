@@ -31,14 +31,14 @@
 			// 调用getDom方法
 			if(oldSelectArea){
 				oldSelectArea.remove();//删除原有的结点
-				console.log("有旧的list");
+				// console.log("有旧的list");
 				var oldList=this.reConstruct(oldSelectArea),
 					domEle=this.getDom(_datas,oldList);
 			}else{
-				console.log("没有旧的list");
+				// console.log("没有旧的list");
 				domEle=this.getDom(_datas);
 			}
-			console.log(domEle.text());
+			// console.log(domEle.text());
 			$this.append(domEle);
 			// console.log(domEle);
 			var selectUl=$this.find("ul"),
@@ -62,7 +62,7 @@
 				this.allAndRevSelect(btnEles,selectUl,display);
 			}
 			this.ulDisplay(selectArea,display,selectUl)
-			console.log("init done!");
+			// console.log("init done!");
 		},
 		getDom:function(datas){
 			// console.log(datas instanceof Array);
@@ -79,8 +79,7 @@
 
 			// 这里要非常注意，json格式的数据遍历以及得到它的长度的问题
 			var alength=this.getJsonLength(oldList),
-				blength=this.getJsonLength(newList);
-			console.log(oldList+"||"+newList);
+					blength=this.getJsonLength(newList);
 			// 遍历data 生成 li的jq对象并拼接到ul上去
 			for(var i=0;i<alength;i++){
 				var $li=$("<li>").data("key",oldList[i]["key"]).text(oldList[i]["value"]);
@@ -108,10 +107,6 @@
 				// console.log(_self);
 				lisValue.push({"key":_self.attr("data-key"),"value":_self.text()});
 			});
-			// console.log(lisValue);
-			// lisValue=JSON.stringify(lisValue);
-			console.log(lisValue);
-			// lisValue.serializeArray();
 			return lisValue;
 		},
 		singleSelect:function(selectUl,display){
@@ -125,7 +120,7 @@
 			selectList.each(function(){
 				$(this)
 					.on("click",function(){
-						console.log($(this).text());
+						// console.log($(this).text());
 						selectUl.removeClass("visible").addClass("invisible");
 						display.text($(this).text());
 						$(this).siblings()
@@ -146,7 +141,7 @@
 			selectList.each(function(){
 				$(this)
 					.on("click",function(){
-						console.log($(this).text());
+						// console.log($(this).text());
 						if($(this).hasClass("isSelected")){
 						selectSum--;
 						$(this)
@@ -191,6 +186,9 @@
 				selectLis=selectUl.find("li").not(".tool-box");
 			btns.each(function(){
 				$this=$(this);
+				// 同样要先解绑点击事件
+				$this.off("click");
+				// 再分别绑定
 				if($this.hasClass("select-all")){
 					$this.on("click",function(){
 						// 全选
@@ -221,7 +219,7 @@
 		},
 		getLiDom:function(key,value){
 			// 生成li结构的方法
-			var $li=$("<li>").data("data-key",key).text(value);
+			var $li=$("<li>").data("key",key).text(value);
 			return $li;
 		},
 		getJsonLength:function(jsonData){
@@ -239,23 +237,73 @@
 	// 然后返回给外部调用
 	function Exposure(plugin){
 		this.plugin=plugin;
+		this.elements=plugin.element;
+		this.settings=plugin.settings;
 	}
-
 	// 外部可以调用的方法
 	Exposure.prototype={
-		getVal:function(key){
-			//根据key值得到li的文本值
-			console.log("123");
-			console.log(this.plugin._name);
+		getSelected:function(){
+			// 获取当前被选中的选项
+			// 返回{key,value}形式的数据
+			var $lis=$(this.elements).find("ul li").not(".tool-box"),
+					selectedLis=[];
+			$lis.each(function(){
+				if($(this).hasClass("isSelected")){
+					selectedLis.push({
+						key:$(this).data("key"),
+						value:$(this).text()
+					});
+				}
+			});
+			return (selectedLis.length>0)?selectedLis:null;
 		},
-		isSelected:function(key){
-			// 根据key值判断li是否被选中
-		},
-		addLiNode:function(){
+		addLiNode:function(key,value){
 			// 添加li结点
+			var $newLi=this.plugin.getLiDom(key,value),
+					$oldLis=$(this.elements).find("ul li").not(".tool-box"),
+					$lastOldLi=$oldLis.last();
+			$newLi.insertAfter($lastOldLi);
+			// 下面这段代码会重复出现
+			var $ul=$(this.elements).find("ul"),
+					$display=$(this.elements).find(".select-display");
+			// 添加完还需要再次绑定点击事件
+			// 还需要做判断
+			if(this.settings["dataType"]=="single"){
+				// 单选
+				this.plugin.singleSelect($ul,$display);
+			}else{
+				// 多选
+				var btnEles=$(this.elements).find(".select-btn");
+				this.plugin.multipleSelect($ul,$display);
+				this.plugin.allAndRevSelect(btnEles,$ul,$display);
+			}
 		},
-		deleteLiNode:function(){
+		deleteLiNode:function(key){
 			// 删除li结点
+			// 根据提供的key值找到相应的选项
+			// 并进行删除操作
+			// 如果没有找到则不做任何事情
+			var	$lis=$(this.elements).find("ul li").not(".tool-box");
+			$lis.each(function(){
+				if($(this).data("key")==key){
+					// 删除节点
+					console.log("删除了:"+$(this).text());
+					$(this).remove();
+				}
+			});
+			var $ul=$(this.elements).find("ul"),
+					$display=$(this.elements).find(".select-display");
+			// 添加完还需要再次绑定点击事件
+			// 还需要做判断
+			if(this.settings["dataType"]=="single"){
+				// 单选
+				this.plugin.singleSelect($ul,$display);
+			}else{
+				// 多选
+				var btnEles=$(this.elements).find(".select-btn");
+				this.plugin.multipleSelect($ul,$display);
+				this.plugin.allAndRevSelect(btnEles,$ul,$display);
+			}
 		}
 	};
 	//防止产生多个实例

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Select_Demo</title>
+  <style>
+  .wrapper{
+    width: 200px;
+    margin: 200px auto;
+    background-color: #ddd;
+    border-radius: 5px;
+  }
+  .selectBox{
+    padding: 5px;
+    margin: 10px;
+  }
+  .selectBox>h1{
+    font-size: 16px;
+    text-align: center;
+  }
+  .displayLine{
+    text-align: center;
+    background-color: #fff;
+    font-size: 14px;
+    padding: 2px 4px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .selectUl{
+    list-style: none;
+    padding: 0;
+    margin: 2px 0;
+    width: 170px;
+    position: absolute;
+    background-color: #eee;
+  }
+  .selectUl li{
+    list-style: none;
+    text-align: center;
+    padding: 2px 0;
+    background-color: #eee;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .selectUl li:hover{
+    background-color: #aaa;
+    color: #fff;
+  }
+  .visible{
+    display: block;
+  }
+  .invisible{
+    display: none;
+  }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="selectBox single" data-type="single">
+      <h1>单选</h1>
+      <div class="select-area">
+        <div class="displayLine">请选择</div>
+        <ul class="selectUl invisible">
+          <li>opt1</li>
+          <li>opt2</li>
+          <li>opt3</li>
+          <li>opt4</li>
+          <li>opt5</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="selectBox multiple" data-type="multiple">
+      <h1>单选</h1>
+      <div class="select-area">
+        <div class="displayLine">请选择</div>
+        <ul class="selectUl invisible">
+          <li>multiple1</li>
+          <li>multiple2</li>
+          <li>multiple3</li>
+          <li>multiple4</li>
+          <li>multiple5</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="../lib/jquery.js"></script>
+  <script src="../src/khSelect.js"></script>
+  <script>
+  $(function(){
+    $(".single").khSelect({
+      "data-type":"single"
+    });
+    $(".multiple").khSelect({
+      "data-type":"multiple"
+    });
+  })
+  </script>
+</body>
+</html>
