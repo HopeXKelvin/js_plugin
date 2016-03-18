@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>SLIDE-BOX</title>
+    <link rel="stylesheet" href="../../utils/Font-Awesome-3.2.1/css/font-awesome.css">
+    <style>
+        /*---------another style START--------*/
+        .slider-box{
+            /*width: 1150px;*/
+            width: 950px;
+            margin: 10px auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .left-btn{
+            position: absolute;
+            left: 0;
+            font-size: 75px;
+            color: orange;
+            line-height: 400px;
+            width: 100px;
+            /*background-color: #000;*/
+            /*opacity: 0.7;*/
+        }
+        .left-btn>i{
+            margin-left: 30px;
+            cursor: pointer;
+        }
+        .left-btn>i:hover{
+            font-size: 85px;
+        }
+        .right-btn{
+            position: absolute;
+            right: 0;
+            font-size: 75px;
+            color: orange;
+            line-height: 400px;
+            width: 100px;
+            /*background-color: #000;*/
+            /*opacity: 0.7;*/
+        }
+        .right-btn>i{
+            margin-left: 35px;
+            cursor: pointer;
+        }
+        .right-btn>i:hover{
+            font-size: 85px;
+        }
+        .slider-content{
+            margin: 0;
+            /*padding: 0 100px;*/
+            width: 950px;
+            overflow: hidden;
+        }
+        .slider-list{
+            margin: 0;
+            /*margin-left: -950px;*/
+            padding: 0;
+            list-style: none;
+            white-space: nowrap;
+            font-size: 0;
+        }
+        .slider-item{
+            list-style: none;
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+        }
+        /*---------another style END--------*/
+    </style>
+  </head>
+  <body>
+    <!--<div class="wrapper">
+        <div class="slider-box">
+            <div class="left-btn">
+                <i class="icon-angle-left"></i>
+            </div>
+            <div class="right-btn">
+                <i class="icon-angle-right"></i>
+            </div>
+            <div class="slider-content">
+                <ul class="slider-list">
+                    <li class="slider-item shadow-box">
+                        <a href="#"><img src="../img/s1.jpg" alt="1"></a>
+                    </li>
+                    <li class="slider-item selected">
+                        <a href="#"><img src="../img/s2.jpg" alt="2"></a>                        
+                    </li>
+                    <li class="slider-item shadow-box">
+                        <a href="#"><img src="../img/s3.jpg" alt="3"></a>                        
+                    </li>
+                    <li class="slider-item shadow-box">
+                        <a href="#"><img src="../img/s4.jpg" alt="1"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>-->
+
+    <div id="a"></div>    
+    
+    <!--引入js-->
+    <script src="../src/jquery-1.12.1.js"></script>
+    <script src="../src/jqSlider.js"></script>
+    <!--引入js-->
+    
+    <!--使用插件-->
+    <script>
+        $(function(){
+            var opts = {
+                items : [
+                    {id : 0,imgSrc : "../img/s1.jpg",fn : function(){console.log("1");},dom : "",isSelected:true},
+                    {id : 1,imgSrc : "../img/s2.jpg",fn : function(){console.log("2");},dom : ""},
+                    {id : 2,imgSrc : "../img/s3.jpg",fn : function(){},dom : ""},
+                    {id : 3,imgSrc : "../img/s4.jpg",fn : function(){},dom : ""}
+                ]
+            };
+            $("#a").jqSlider(opts);
+        });
+    </script>
+  </body>
+</html>
